@@ -15,6 +15,7 @@ public class ProductController {
 
     @PostMapping("/newProduct")
     public Product newProduct(@RequestBody Product product) {
+        // FIX: Pass the whole 'product' object, as required by the updated ProductService
         return service.addProduct(product);
     }
 
@@ -22,7 +23,6 @@ public class ProductController {
     public void deleteProduct(@PathVariable Long productId) {
         service.deleteProduct(productId);
     }
-
 
     @PutMapping("/update/{productId}")
     public Product updateProduct(@PathVariable Long productId, @RequestBody Product product) {
