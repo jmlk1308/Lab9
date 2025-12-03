@@ -1,6 +1,7 @@
 package com.ramosa.lab_7;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.ramosa.lab_7.entity.Product;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;

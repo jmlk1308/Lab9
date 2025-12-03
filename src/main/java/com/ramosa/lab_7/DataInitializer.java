@@ -1,5 +1,9 @@
 package com.ramosa.lab_7;
 
+import com.ramosa.lab_7.entity.Customer;
+import com.ramosa.lab_7.entity.Product;
+import com.ramosa.lab_7.repository.CustomerRepository;
+import com.ramosa.lab_7.repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import java.util.Arrays;

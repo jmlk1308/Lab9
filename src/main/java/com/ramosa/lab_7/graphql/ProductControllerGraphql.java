@@ -1,6 +1,6 @@
 package com.ramosa.lab_7.graphql;
 
-import com.ramosa.lab_7.Product;
+import com.ramosa.lab_7.entity.Product;
 import com.ramosa.lab_7.ProductService;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -45,7 +45,6 @@ public class ProductControllerGraphql {
         String name = (String) product.get("name");
         Double price = ((Number) product.get("price")).doubleValue();
 
-        // Create product with updated details (without ID in constructor)
         Product updatedDetails = new Product(name, price);
         return productService.updateProduct(id, updatedDetails);
     }

@@ -1,4 +1,4 @@
-package com.ramosa.lab_7;
+package com.ramosa.lab_7.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,7 +18,6 @@ public class Customer {
     private String firstName;
     private String lastName;
 
-    // One Customer has Many Invoices
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Invoice> invoices;
 }

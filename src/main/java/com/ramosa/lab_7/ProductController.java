@@ -1,5 +1,6 @@
 package com.ramosa.lab_7;
 
+import com.ramosa.lab_7.entity.Product;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;

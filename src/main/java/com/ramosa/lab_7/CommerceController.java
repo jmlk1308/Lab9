@@ -1,5 +1,11 @@
 package com.ramosa.lab_7;
 
+import com.ramosa.lab_7.entity.Customer;
+import com.ramosa.lab_7.entity.Invoice;
+import com.ramosa.lab_7.entity.Product;
+import com.ramosa.lab_7.repository.CustomerRepository;
+import com.ramosa.lab_7.repository.InvoiceRepository;
+import com.ramosa.lab_7.repository.ProductRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,21 +36,18 @@ public class CommerceController {
     @PostMapping("/invoice")
     public ResponseEntity<?> createInvoice(@RequestBody InvoiceRequest request) {
         try {
-            // Check if customer exists
+
             Customer customer = customerRepository.findById(request.customerId)
                     .orElseThrow(() -> new RuntimeException("Customer not found with ID: " + request.customerId));
 
-            // Check if products exist
             List<Product> products = productRepository.findAllById(request.productIds);
 
-            // Verify all requested products were found
             if (products.size() != request.productIds.size()) {
                 return ResponseEntity.badRequest()
                         .body("Some products not found. Requested: " +
                                 request.productIds.size() + ", Found: " + products.size());
             }
 
-            // Create and save invoice
             Invoice invoice = new Invoice();
             invoice.setCustomer(customer);
             invoice.setProducts(products);

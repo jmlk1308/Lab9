@@ -1,4 +1,4 @@
-package com.ramosa.lab_7;
+package com.ramosa.lab_7.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -18,12 +18,11 @@ public class Invoice {
 
     private LocalDate date;
 
-    // Many Invoices belong to One Customer
+
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
-    // Many Invoices can contain Many Products
     @ManyToMany
     @JoinTable(
             name = "invoice_product",
