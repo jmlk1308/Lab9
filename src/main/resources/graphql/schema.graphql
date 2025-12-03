@@ -1,0 +1,60 @@
+type Product {
+    id: ID!
+    name: String!
+    price: Float!
+}
+
+type Customer {
+    id: ID!
+    firstName: String!
+    lastName: String!
+}
+
+type Invoice {
+    id: ID!
+    date: String!
+    customer: Customer!
+    products: [Product]!
+}
+
+input ProductInput {
+    name: String!
+    price: Float!
+}
+
+input CustomerInput {
+    firstName: String!
+    lastName: String!
+}
+
+input InvoiceInput {
+    customerId: ID!
+    productIds: [ID!]!
+}
+
+type Query {
+    # Product queries
+    allProducts: [Product!]!
+    productById(id: ID!): Product
+
+    # Customer queries
+    allCustomers: [Customer!]!
+    customerById(id: ID!): Customer
+
+    # Invoice queries
+    allInvoices: [Invoice!]!
+    invoiceById(id: ID!): Invoice
+}
+
+type Mutation {
+    # Product mutations
+    addProduct(product: ProductInput!): Product!
+    updateProduct(id: ID!, product: ProductInput!): Product
+    deleteProduct(id: ID!): Boolean!
+
+    # Customer mutations (using simple arguments)
+    addCustomer(firstName: String!, lastName: String!): Customer!
+
+    # Invoice mutations (using simple arguments)
+    createInvoice(customerId: ID!, productIds: [ID!]!): Invoice!
+}
