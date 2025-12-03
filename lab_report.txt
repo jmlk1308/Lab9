@@ -1,0 +1,20 @@
+Endpoints for;
+    POST:
+      http://localhost:8080/api/products/newProduct
+      http://localhost:8080/api/commerce/customer
+      http://localhost:8080/api/commerce/invoice
+      
+    
+    UPDATE:
+      http://localhost:8080/api/products/delete/{id}
+    
+    DELETE
+      http://localhost:8080/api/products/update/{id}
+
+MySQL Shell
+    USE ws101_db;
+    SHOW TABLES;
+    SELECT * FROM products;
+    SELECT * FROM customer;
+    SELECT * FROM invoice;
+    SELECT * FROM invoice_product;
