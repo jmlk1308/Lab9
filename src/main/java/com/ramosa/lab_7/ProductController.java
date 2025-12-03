@@ -1,5 +1,6 @@
 package com.ramosa.lab_7;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -14,19 +15,24 @@ public class ProductController {
     }
 
     @PostMapping("/newProduct")
-    public Product newProduct(@RequestBody Product product) {
-        // FIX: Pass the whole 'product' object, as required by the updated ProductService
-        return service.addProduct(product);
+    public ResponseEntity<Product> newProduct(@RequestBody Product product) {
+        Product savedProduct = service.addProduct(product);
+        return ResponseEntity.ok(savedProduct);
     }
 
     @DeleteMapping("/delete/{productId}")
-    public void deleteProduct(@PathVariable Long productId) {
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long productId) {
         service.deleteProduct(productId);
+        return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/update/{productId}")
-    public Product updateProduct(@PathVariable Long productId, @RequestBody Product product) {
-        return service.updateProduct(productId, product);
+    public ResponseEntity<Product> updateProduct(@PathVariable Long productId, @RequestBody Product product) {
+        Product updatedProduct = service.updateProduct(productId, product);
+        if (updatedProduct != null) {
+            return ResponseEntity.ok(updatedProduct);
+        }
+        return ResponseEntity.notFound().build();
     }
 
     @GetMapping
@@ -35,7 +41,11 @@ public class ProductController {
     }
 
     @GetMapping("/{id}")
-    public Product getProductById(@PathVariable Long id) {
-        return service.getProductById(id);
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        Product product = service.getProductById(id);
+        if (product != null) {
+            return ResponseEntity.ok(product);
+        }
+        return ResponseEntity.notFound().build();
     }
 }
